@@ -1,6 +1,5 @@
 package com.example.znh.texttestviewlink;
 
-import android.content.Context;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -18,26 +17,26 @@ import java.util.Iterator;
  * Created by ninghui on 2016/7/5.
  */
 public class TextViewLinkUtils {
-    private Context context;
     private static TextViewLinkUtils mTextViewLinkUtils;
     private OnUrlLinkClickListener mUrlLinkClickListener;
-    private boolean falg;
 
-    private TextViewLinkUtils(Context context) {
-        this.context = context;
+    private TextViewLinkUtils() {
     }
 
-    public static synchronized TextViewLinkUtils getInstance(Context context) {
+    public static synchronized TextViewLinkUtils getInstance() {
         if (mTextViewLinkUtils == null) {
-            mTextViewLinkUtils = new TextViewLinkUtils(context);
+            mTextViewLinkUtils = new TextViewLinkUtils();
         }
         return mTextViewLinkUtils;
     }
 
-    public void setFalg(boolean falg) {
-        this.falg = falg;
-    }
-
+    /**
+     * 链接替换为文字
+     *
+     * @param textView
+     * @param strContent
+     * @return
+     */
     public TextView replaceUrl(TextView textView, String strContent) {
         textView.setAutoLinkMask(Linkify.WEB_URLS);
         textView.setText(strContent);
@@ -47,7 +46,7 @@ public class TextViewLinkUtils {
             int end = text.length();
             Spannable sp = (Spannable) textView.getText();
             URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
-            HashSet<String> urlsSet = new HashSet<String>();
+            HashSet<String> urlsSet = new HashSet<>();
             for (int i = 0; i < urls.length; i++) {
                 urlsSet.add(urls[i].getURL());
             }
@@ -66,18 +65,13 @@ public class TextViewLinkUtils {
     public void setLink(TextView textView, String strContent, int highLightColor, int foregroundColor, OnUrlLinkClickListener urlLinkClickListener) {
         this.mUrlLinkClickListener = urlLinkClickListener;
         textView = replaceUrl(textView, strContent);
-        /*if(falg){
-            textView.setClickable(false);
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
-        }*/
-
         CharSequence text = textView.getText();
         if (text instanceof Spannable) {
             int end = text.length();
             Spannable sp = (Spannable) textView.getText();
             URLSpan[] urls = sp.getSpans(0, end, URLSpan.class);
             SpannableStringBuilder style = new SpannableStringBuilder(text);
-            style.clearSpans();// should clear old spans
+            style.clearSpans();
             for (URLSpan url : urls) {
                 MyURLSpan myURLSpan = new MyURLSpan(url.getURL());
                 style.setSpan(myURLSpan, sp.getSpanStart(url), sp.getSpanEnd(url), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -88,7 +82,9 @@ public class TextViewLinkUtils {
         }
     }
 
-
+    /**
+     * 自己处理链接点击
+     */
     private class MyURLSpan extends ClickableSpan {
         private String mUrl;
 

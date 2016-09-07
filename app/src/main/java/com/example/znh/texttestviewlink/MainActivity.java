@@ -11,7 +11,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private MyTextView myTextView;
-    private String str;
     private TextViewLinkUtils mTextViewLinkUtils;
 
     @Override
@@ -19,9 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myTextView = (MyTextView) findViewById(R.id.text_view);
+
         myTextView.setMyMaxLines(2);
-        str = "http://www.baidu.com哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
-        mTextViewLinkUtils = TextViewLinkUtils.getInstance(this);
+
+        String str = "http://www.baidu.com哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
+
+        mTextViewLinkUtils = TextViewLinkUtils.getInstance();
         mTextViewLinkUtils.setLink(myTextView, str, Color.YELLOW, Color.BLUE, new TextViewLinkUtils.OnUrlLinkClickListener() {
             @Override
             public void onLinkClick(View view, String url) {

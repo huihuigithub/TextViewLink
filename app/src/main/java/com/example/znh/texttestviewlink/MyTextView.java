@@ -33,7 +33,7 @@ public class MyTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         CharSequence charSequence = getText();
         if (lines < getLineCount()) {
-            int lastCharDown = getLayout().getLineVisibleEnd(lines);
+            int lastCharDown = getLayout().getLineVisibleEnd(lines-1);
             Log.i("lan", lines + "");
             if (charSequence.length() > lastCharDown) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
