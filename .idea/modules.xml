@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TestTextViewLink.iml" filepath="$PROJECT_DIR$/TestTextViewLink.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TextViewLink.iml" filepath="$PROJECT_DIR$/.idea/modules/TextViewLink.iml" group="TextViewLink" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="TextViewLink/app" />
     </modules>
   </component>
 </project>
