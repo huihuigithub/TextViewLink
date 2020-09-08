@@ -1,4 +1,4 @@
-package com.example.znh.texttestviewlink;
+package com.znh.textviewlink;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
